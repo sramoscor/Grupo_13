@@ -1,8 +1,9 @@
+const dns = require("dns");
+dns.setDefaultResultOrder("ipv4first");
+
 function esperar(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-const dns = require("dns");
-dns.setDefaultResultOrder("ipv4first");
 
 async function obtenerNumeroDePaginas() {
   const respuesta = await fetch("https://rickandmortyapi.com/api/character");
@@ -39,4 +40,36 @@ async function consultaSecuencial() {
 
   return todosLosPersonajes;
 }
-consultaSecuencial();
+
+async function obtenerPaginaConReintento(pagina) {
+  let respuesta = await fetch(`https://rickandmortyapi.com/api/character?page=${pagina}`);
+
+  while (respuesta.status === 429) {
+    await esperar(1000);
+    respuesta = await fetch(`https://rickandmortyapi.com/api/character?page=${pagina}`);
+  }
+
+  const datos = await respuesta.json();
+  return datos.results;
+}
+
+async function consultaConcurrente() {
+  console.time("Concurrente");
+
+  const totalPaginas = await obtenerNumeroDePaginas();
+
+  const promesas = [];
+  for (let pagina = 1; pagina <= totalPaginas; pagina++) {
+    promesas.push(obtenerPaginaConReintento(pagina));
+  }
+
+  const resultados = await Promise.all(promesas);
+  const todosLosPersonajes = resultados.flat();
+
+  console.timeEnd("Concurrente");
+  console.log("Total personajes (concurrente):", todosLosPersonajes.length);
+
+  return todosLosPersonajes;
+}
+
+consultaConcurrente();
