@@ -35,4 +35,27 @@ function agrupadoPorEspecie(personajes) {
 
   return resultado;
 }
+function clasificarPorEpisodios(personajes) {
+  const resultado = personajes.reduce((acc, personaje) => {
+    const episodios = personaje.cantidadEpisodios;
+    let rango;
+
+    if (episodios >= 1 && episodios <= 5) {
+      rango = "1-5";
+    } else if (episodios >= 6 && episodios <= 15) {
+      rango = "6-15";
+    } else if (episodios >= 16 && episodios <= 30) {
+      rango = "16-30";
+    } else if (episodios > 30) {
+      rango = "30+";
+    }
+
+    acc[rango] = (acc[rango] || 0) + 1;
+
+    return acc;
+  }, {});
+
+  return resultado;
+}
 console.log(agrupadoPorEspecie(personajePrueba));
+console.log(clasificarPorEpisodios(personajePrueba));
