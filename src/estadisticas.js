@@ -5,7 +5,7 @@ const personajePrueba = [
   { especie: "Human", estado: "Dead", cantidadEpisodios: 15 },
 ];
 
-function agrupadoPorEspecie(personajes) {
+export function agrupadoPorEspecie(personajes) {
   const resultado = personajes.reduce((acc, personaje) => {
     const especie = personaje.especie;
 
@@ -27,15 +27,16 @@ function agrupadoPorEspecie(personajes) {
   }, {});
 
   for (const especie in resultado) {
-  resultado[especie].promedioEpisodios =
-    resultado[especie].totalEpisodios / resultado[especie].cantidad;
+    resultado[especie].promedioEpisodios =
+      resultado[especie].totalEpisodios / resultado[especie].cantidad;
 
-  delete resultado[especie].totalEpisodios;
+    delete resultado[especie].totalEpisodios;
   }
 
   return resultado;
 }
-function clasificarPorEpisodios(personajes) {
+
+export function clasificarPorEpisodios(personajes) {
   const resultado = personajes.reduce((acc, personaje) => {
     const episodios = personaje.cantidadEpisodios;
     let rango;
