@@ -17,3 +17,15 @@ export function personajesVivosHumanos(personajes) {
 export function personajesConMuchosEpisodios(personajes) {
   return personajes.filter((p) => p.cantidadEpisodios >= 20);
 }
+
+/**
+ * 3. find
+ * Encontrar el primer personaje que:
+ * - sea de la especie Alien
+ * - tenga género Female
+ */
+export function primerAlienFemale(personajes) {
+  return personajes.find(
+    (p) => p.especie === "Alien" && p.genero === "Female"
+  );
+}
