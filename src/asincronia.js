@@ -1,6 +1,3 @@
-const dns = require("dns");
-dns.setDefaultResultOrder("ipv4first");
-
 function esperar(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -53,7 +50,7 @@ async function obtenerPaginaConReintento(pagina) {
   return datos.results;
 }
 
-async function consultaConcurrente() {
+export async function consultaConcurrente() {
   console.time("Concurrente");
 
   const totalPaginas = await obtenerNumeroDePaginas();
@@ -71,5 +68,3 @@ async function consultaConcurrente() {
 
   return todosLosPersonajes;
 }
-
-consultaConcurrente();
