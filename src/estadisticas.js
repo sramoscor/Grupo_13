@@ -1,10 +1,3 @@
-const personajePrueba = [
-  { especie: "Human", estado: "Alive", cantidadEpisodios: 10 },
-  { especie: "Human", estado: "Dead", cantidadEpisodios: 20 },
-  { especie: "Alien", estado: "Alive", cantidadEpisodios: 5 },
-  { especie: "Human", estado: "Dead", cantidadEpisodios: 15 },
-];
-
 export function agrupadoPorEspecie(personajes) {
   const resultado = personajes.reduce((acc, personaje) => {
     const especie = personaje.especie;
@@ -58,5 +51,3 @@ export function clasificarPorEpisodios(personajes) {
 
   return resultado;
 }
-console.log(agrupadoPorEspecie(personajePrueba));
-console.log(clasificarPorEpisodios(personajePrueba));
