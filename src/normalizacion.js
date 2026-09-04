@@ -8,7 +8,7 @@ export function normalizarPersonajes(personajes){
         genero:personaje.gender,
         origen:personaje.origin.name,
         ubiActual:personaje.location.name,
-        cantidadEpisodios:personaje.espisode.length,
+        cantidadEpisodios:personaje.episode.length,
         imagen:personaje.image
     }));
 }
