@@ -37,3 +37,15 @@ export function primerAlienFemale(personajes) {
 export function existeAlgunTipoConInfo(personajes) {
   return personajes.some((p) => p.tipo !== "" && p.tipo != null);
 }
+
+/**
+ * 5. every
+ * Verificar que todos los personajes:
+ * - tengan imagen
+ * - aparezcan al menos en un episodio
+ */
+export function todosTienenImagenYEpisodio(personajes) {
+  return personajes.every(
+    (p) => Boolean(p.imagen) && p.cantidadEpisodios >= 1
+  );
+}
