@@ -29,3 +29,11 @@ export function primerAlienFemale(personajes) {
     (p) => p.especie === "Alien" && p.genero === "Female"
   );
 }
+
+/**
+ * 4. some
+ * Determinar si existe al menos un personaje cuyo campo type tenga información.
+ */
+export function existeAlgunTipoConInfo(personajes) {
+  return personajes.some((p) => p.tipo !== "" && p.tipo != null);
+}
